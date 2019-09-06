@@ -17,7 +17,7 @@ jobs:
         version: 10.x
 
     - name: sh
-      run: sh action-a/entrypoint.sh
+      run: sh action-a/check_validation.sh
 
 
 

@@ -1,11 +1,26 @@
-name: A workflow for my Hello World file
-on: push
+name: Main workflow
+on: [push]
 jobs:
-  build:
-    name: Hello world action
-    runs-on: ubuntu-latest    
+  run:
+    name: Run
+    runs-on: ${{ matrix.operating-system }}
+    strategy:
+      matrix:
+        operating-system: [ubuntu-latest]
     steps:
-    - uses: actions/checkout@master
-    - uses: ./validation.sh
-      env:
-        MY_NAME: "Mona"
+    - name: Checkout
+      uses: actions/checkout@master
+
+    - name: Set Node.js 10.x
+      uses: actions/setup-node@master
+      with:
+        version: 10.x
+
+    - name: npm install
+      run: npm install
+
+    - name: Lint
+      run: npm run format-check
+
+    - name: npm test
+      run: npm test

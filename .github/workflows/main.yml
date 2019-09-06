@@ -16,5 +16,8 @@ jobs:
       with:
         version: 10.x
 
-    - name: npm install
-      run: npm install
+    - name: sh
+      run: sh action-a/entrypoint.sh
+
+
+
